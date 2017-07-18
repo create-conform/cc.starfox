@@ -1,0 +1,11 @@
+{
+  "name": "cc.starfox",
+  "title": "StarFox Module",
+  "version": "0.1.0",
+  "description": "StarFox UIXML template engine.",
+  "main": "starfox.js",
+  "pkxDependencies" : [
+    "cc.type.0.2",
+    "cc.io.0.1"
+  ]
+}
