@@ -100,15 +100,15 @@ function StarFox() {
         if (onload != null) {
             var funct = getProperty(app.instance, onload);
             if (typeof funct !== "function") {
-                throw new Error("function '" + onload + "' not found");
+                throw new Error(self.ERROR_INVALID_UIXML, "Can't call onLoad callback. Controller '" + app.controller + "' is missing function '" + onload + "'.");
             }
             funct.call(app.instance, app);
         }
 
         // show the main control
-        if (app.start != "") {
+        if (app.main) {
             for(var p=0;p<app.controls.length;p++) {
-                if (app.controls[p].name == app.start) {
+                if (app.controls[p].name == app.main) {
                     if (app.parameters == null || (app.parameters != null && (app.parameters.show == null || app.parameters.show != false))) {
                         app.controls[p].show();
                     }
