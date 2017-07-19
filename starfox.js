@@ -438,16 +438,16 @@ var singleton;
 define(function() {
     if (!singleton) {
         singleton = new (Function.prototype.bind.apply(StarFox, arguments));
-
-        //DEBUG
-        try {
-            var sf = define.cache.get().factory();
-            sf.load("pkx:///cc.starfox.0.1.0/test/test.xml").then().catch(console.error);
-        }
-        catch(e) {
-            console.error(e);
-        }
     }
 
     return singleton;
 });
+
+//DEBUG
+try {
+    //var sf = define.cache.get().factory();
+    //sf.load("pkx:///cc.starfox.0.1.0/test/test.xml").then().catch(console.error);
+}
+catch(e) {
+    console.error(e);
+}
