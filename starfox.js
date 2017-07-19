@@ -148,7 +148,7 @@ function StarFox() {
             var tagName = node.tagName == null ? node.tagName : node.tagName.toLowerCase();
             var name = getNodeAttribute(node, "name", false);
 
-            var control = controls[tagName.toLowerCase()];
+            var control = controls[tagName];
             if (control != null) {
                 instance = new control.type();
 
@@ -427,10 +427,10 @@ function StarFox() {
     //
     this.registerControl = function(control)
     {
-        if (controls[control.definition.name]) {
+        if (controls[control.definition.name.toLowerCase()]) {
             throw new Error(self.ERROR_INVALID_CONTROL, "A control with name '" + control.definition.name + "' is already registered.");
         }
-        controls[control.definition.name] = control;
+        controls[control.definition.name.toLowerCase()] = control;
     };
 }
 
