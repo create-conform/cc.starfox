@@ -213,8 +213,10 @@ function StarFox() {
                 else {
                     // itterate all container nodes
                     for (var k = 0; k < node.childNodes.length; k++) {
+                        var containers = "";
                         for (var t = 0; t < control.definition.containers.length; t++) {
                             var containerName = controlTypeCaseSensitive ? control.definition.containers[t].name : control.definition.containers[t].name.toLowerCase();
+                            containers += (containers? "" : ", ") + containerName;
                             if (node.childNodes[k].tagName == containerName) {
                                 // parse container
                                 parseContainerNode(control.definition.containers[t], instance, node.childNodes[k], control.definition, customControlInstance);
@@ -225,7 +227,7 @@ function StarFox() {
                         if (!foundCont) {
                             if (node.childNodes[k].tagName != null) {
                                 // not a valid child node
-                                throw new Error(self.ERROR_UNABLE_TO_RENDER, "Could not render control '" + instance.name + "'. Invalid child node '" + node.childNodes[k].tagName + "'.");
+                                throw new Error(self.ERROR_UNABLE_TO_RENDER, "Could not render control '" + instance.name + "'. Invalid child node '" + node.childNodes[k].tagName + "'. Expects one of the container nodes: '" + containers + "'.");
                             }
                         }
                     }
