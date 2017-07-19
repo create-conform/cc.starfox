@@ -17,14 +17,12 @@ function StarFox() {
     //
     // DEPENDENCIES
     //
-
     var type = require("cc.type");
     var io = require("cc.io");
 
     //
     // CONSTANTS
     //
-
     this.ERROR_INVALID_UIXML = "starfox-error-invalid-uixml";
     this.ERROR_UNSUPPORTED_RUNTIME = "starfox-error-unsupported-runtime";
     this.ERROR_UNABLE_TO_RENDER = "starfox-error-unable-to-render";
@@ -34,8 +32,8 @@ function StarFox() {
     //
     // PRIVATES
     //
-
     var controls = [];
+    var controlTypeCaseSensitive = false;
 
     //
     // class containing app information
@@ -427,10 +425,11 @@ function StarFox() {
     //
     this.registerControl = function(control)
     {
-        if (controls[control.definition.name.toLowerCase()]) {
+        var type = controlTypeCaseSensitive? control.definition.name : control.definition.name.toLowerCase();
+        if (controls[type]) {
             throw new Error(self.ERROR_INVALID_CONTROL, "A control with name '" + control.definition.name + "' is already registered.");
         }
-        controls[control.definition.name.toLowerCase()] = control;
+        controls[type] = control;
     };
 }
 
