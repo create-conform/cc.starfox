@@ -64,7 +64,7 @@ function StarFox() {
         var self = this;
 
         var uiXML = getXMLParser()(data);
-        var uiNode = uiXML.getElementsByTagName("UI")[0];
+        var uiNode = uiXML.getElementsByTagName("ui")[0];
         var tagNameCount = {}; // used for auto generating property name for controller
         var controlGroups = []; // used for grouping controls (for the switch command)
 
