@@ -148,7 +148,7 @@ function StarFox() {
             var tagName = node.tagName == null ? node.tagName : node.tagName.toLowerCase();
             var name = getNodeAttribute(node, "name", false);
 
-            var control = controls[tagName];
+            var control = controls[tagName.toLowerCase()];
             if (control != null) {
                 instance = new control.type();
 
