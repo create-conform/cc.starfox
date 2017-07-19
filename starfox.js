@@ -216,7 +216,7 @@ function StarFox() {
                         var containers = "";
                         for (var t = 0; t < control.definition.containers.length; t++) {
                             var containerName = controlTypeCaseSensitive ? control.definition.containers[t].name : control.definition.containers[t].name.toLowerCase();
-                            containers += (containers? "" : ", ") + containerName;
+                            containers += ((containers != ""? "" : ", ") + containerName);
                             if (node.childNodes[k].tagName == containerName) {
                                 // parse container
                                 parseContainerNode(control.definition.containers[t], instance, node.childNodes[k], control.definition, customControlInstance);
