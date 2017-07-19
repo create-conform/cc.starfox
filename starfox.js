@@ -150,7 +150,7 @@ function StarFox() {
 
             var control = controls[tagName];
             if (control != null) {
-                instance = new control.factory();
+                instance = new control.type();
 
                 // get name attribute or add default mandatory name attribute
                 instance.name = name;
@@ -427,9 +427,8 @@ function StarFox() {
     //
     this.registerControl = function(control)
     {
-        if (!controls[control.definition.name]) {
+        if (controls[control.definition.name]) {
             throw new Error(self.ERROR_INVALID_CONTROL, "A control with name '" + control.definition.name + "' is already registered.");
-            return;
         }
         controls[control.definition.name] = control;
     };
