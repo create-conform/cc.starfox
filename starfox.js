@@ -279,10 +279,10 @@ function StarFox() {
 
                     // add the newly created instance
                     if (customControlInstance) {
-                        customControlInstance[control.name] = controls[c];
+                        customControlInstance[control.name] = control;
                     }
                     else {
-                        addInstanceToController(control.name, controls[c]);
+                        addInstanceToController(control.name, control);
                     }
 
                     //add control[c] to container
