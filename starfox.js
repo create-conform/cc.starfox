@@ -110,6 +110,9 @@ function StarFox() {
             for(var p=0;p<app.controls.length;p++) {
                 if (app.controls[p].name == app.main) {
                     if (app.parameters == null || (app.parameters != null && (app.parameters.show == null || app.parameters.show != false))) {
+                        if (typeof app.controls[p].draw.fullScreen !== "undefined") {
+                            app.controls[p].draw.fullScreen = true;
+                        }
                         app.controls[p].show();
                     }
                 }
