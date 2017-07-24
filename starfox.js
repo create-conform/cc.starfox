@@ -74,7 +74,7 @@ function StarFox() {
         app = new App();
         app.name = getNodeAttribute(uiNode, "name");
         app.icon = getNodeAttribute(uiNode, "icon", false);
-        app.controller = getNodeAttribute(uiNode, "controller", false);
+        app.controller = getNodeAttribute(uiNode, "controller", false) || {};
         app.main = getNodeAttribute(uiNode, "main", false);
         app.onLoad = getNodeAttribute(uiNode, "onload", false);
 
@@ -210,9 +210,10 @@ function StarFox() {
                     for (var e = 0; e < control.definition.events.length; e++) {
                         if (node.attributes["on" + control.definition.events[e].name] != null) {
                             // manage callback (fn should exist in controller instance)
+                            var callback = null;
                             var fnId = node.attributes["on" + control.definition.events[e].name].value;
 
-                            var obj = customControlInstance != null ? customControlInstance : app.object;
+                            var obj = customControlInstance != null ? customControlInstance : app.controller;
                             callback = function (sender, args) {
                                 var fn = type.getProperty(obj, fnId);
                                 if (fn == null) {
@@ -222,6 +223,7 @@ function StarFox() {
                                     fn.call(obj, sender, args);
                                 }
                             };
+                            instance.events.addEventListener(control.definition.events[e].type, callback);
                         }
                     }
                 }
