@@ -74,9 +74,17 @@ function StarFox() {
         app = new App();
         app.name = getNodeAttribute(uiNode, "name");
         app.icon = getNodeAttribute(uiNode, "icon", false);
-        app.controller = getNodeAttribute(uiNode, "controller", false) || {};
+        app.controller = getNodeAttribute(uiNode, "controller", false);
         app.main = getNodeAttribute(uiNode, "main", false);
         app.onLoad = getNodeAttribute(uiNode, "onload", false);
+
+        // get the app controller from dependencies
+        if (app.controller) {
+            app.controller = define.cache.get(app.controller);
+        }
+        else {
+            app.controller = {};
+        }
 
         // start parsing UI node children
         var groupNodes = [];
@@ -217,7 +225,7 @@ function StarFox() {
                             callback = function (sender, args) {
                                 var fn = type.getProperty(obj, fnId);
                                 if (fn == null) {
-                                    throw new Error(self.ERROR_UNABLE_TO_RENDER, "Could not execute callback. Constructor '" + app.controller + "' is missing function '" + fnId + "'.");
+                                    throw new Error(self.ERROR_UNABLE_TO_RENDER, "Could not execute callback. Controller '" + app.controller + "' is missing function '" + fnId + "'.");
                                 }
                                 else {
                                     fn.call(obj, sender, args);
