@@ -80,10 +80,10 @@ function StarFox() {
 
         // get the app controller from dependencies
         if (app.controller) {
-            app.controller = define.cache.get(app.controller);
+            app.instance = define.cache.get(app.controller);
         }
         else {
-            app.controller = {};
+            app.instance = {};
         }
 
         // start parsing UI node children
@@ -221,7 +221,7 @@ function StarFox() {
                             var callback = null;
                             var fnId = node.attributes["on" + control.definition.events[e].name].value;
 
-                            var obj = customControlInstance != null ? customControlInstance : app.controller;
+                            var obj = customControlInstance != null ? customControlInstance : app.instance;
                             callback = function (sender, args) {
                                 var fn = type.getProperty(obj, fnId);
                                 if (fn == null) {
